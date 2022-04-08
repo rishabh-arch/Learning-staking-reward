@@ -1,4 +1,6 @@
-# Environment Setup - 
+# Welcome to the learning Days project
+
+## Environment Setup - 
 1. - Install dependencies:
         1.1. Install Node.js
         1.2. npm i -g @remix-projects/remixd
@@ -15,7 +17,16 @@
 5. - Thats't it
 
 ## At Main branch
+- [Solidity by Examples(Very Important)](https://solidity-by-example.org/)
+
+- [Block and Transaction Properties](https://dev.to/gbengelebs/introduction-to-solidity-228c)
+
 - I made an example of grandfather Fortune contract.
 
 ## At Day2 branch
-- [Block and Transaction Properties](https://dev.to/gbengelebs/introduction-to-solidity-228c)
+The contract allows only its creator to create new coins(different issuance schemes are possible).
+
+Anyone can send coins to each other without a need for registering with a username and password, all you need is an Ethereum keypair.
+### I am going to build a basic token contract
+
+- [reference from youtube channel](https://www.youtube.com/watch?v=chdYNPCC8ck&list=PLzb46hGUzitDd39YzB1YvZqeIXXtmBrHX&index=13)
