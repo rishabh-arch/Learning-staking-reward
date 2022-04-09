@@ -1,0 +1,92 @@
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0x2c3be0c5feab066c2c32b848424a64a3bc219458310076d072df240d07d5cff9
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x49f24b5FD532efd0ba3591b976930477F4613c9B
+   > block number:        6
+   > block timestamp:     1649519754
+   > account:             0xDCFaF4469a218367ea4c9CBE589932C2f61f4E71
+   > balance:             99.94370764
+   > gas used:            332219 (0x511bb)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00664438 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00664438 ETH
+
+
+2_deploy_contract.js
+====================
+
+   Replacing 'Tether'
+   ------------------
+   > transaction hash:    0xe64c98b01b0e8c722c7a6eaf273745e9c3f47d7ffe72778ef5aeca15a8a055f4
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x3381FE0e3Ccb5388e15883519040fde648f8e078
+   > block number:        8
+   > block timestamp:     1649519755
+   > account:             0xDCFaF4469a218367ea4c9CBE589932C2f61f4E71
+   > balance:             99.92537002
+   > gas used:            874346 (0xd576a)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01748692 ETH
+
+
+   Replacing 'RWD'
+   ---------------
+   > transaction hash:    0xd670ce96c348bf07f0fb670ba4445885f76226f5e3360b3e424841079ddea9e4
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xdF64dBd0E4124B749e16e4C6364E51c7C91B994a
+   > block number:        9
+   > block timestamp:     1649519757
+   > account:             0xDCFaF4469a218367ea4c9CBE589932C2f61f4E71
+   > balance:             99.90788262
+   > gas used:            874370 (0xd5782)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0174874 ETH
+
+
+   Replacing 'DecentralBank'
+   -------------------------
+   > transaction hash:    0x9dac427c6860551a06b53da76705945c06efa951093d53ee9f67ecaf556a6c08
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x80B7451EEbF916c83E2b8C29d94fd643a7E2aCa5
+   > block number:        10
+   > block timestamp:     1649519758
+   > account:             0xDCFaF4469a218367ea4c9CBE589932C2f61f4E71
+   > balance:             99.90070404
+   > gas used:            358929 (0x57a11)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00717858 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:           0.0421529 ETH
+
+
+Summary
+=======
+> Total deployments:   4
+> Final cost:          0.04879728 ETH
+
+
+- Fetching solc version list from solc-bin. Attempt #1
+- Fetching solc version list from solc-bin. Attempt #1
+- Blocks: 0            Seconds: 0
+- Saving migration to chain.
+- Blocks: 0            Seconds: 0
+- Blocks: 0            Seconds: 0
+- Blocks: 0            Seconds: 0
+- Saving migration to chain.
