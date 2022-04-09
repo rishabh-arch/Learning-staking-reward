@@ -4,7 +4,7 @@
 1. - Install dependencies:
         1.1. Install Node.js
         1.2. npm i -g @remix-projects/remixd
-        1.3. remixd -s .
+        1.3. remixd -s . (on solidity project root)
 2. - Now go to browser and type:
     2.1. https://remix.ethereum.org
 3. - You should see the following:
@@ -32,4 +32,4 @@ Anyone can send coins to each other without a need for registering with a userna
 - [reference from youtube channel](https://www.youtube.com/watch?v=chdYNPCC8ck&list=PLzb46hGUzitDd39YzB1YvZqeIXXtmBrHX&index=13)
 
 ## At Day3 branch
-- at defi-staking-app-starter/defi-staking-app-starter/
+- 
