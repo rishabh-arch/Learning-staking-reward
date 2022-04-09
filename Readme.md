@@ -6,14 +6,14 @@
         - 1.2. npm i -g @remix-projects/remixd
         - 1.3. remixd -s . (on solidity project root)
 2. - Now go to browser and type:
-    - 2.1. https://remix.ethereum.org
+        - 2.1. https://remix.ethereum.org
 3. - You should see the following:
-    - 3.1. Workspace
-    - 3.2. now connect to localhost
-    - 3.3. You can now start your project
+        - 3.1. Workspace
+        - 3.2. now connect to localhost
+        - 3.3. You can now start your project
 4. - Do the project side by side 
-    - 4.1 Edit and creating contracts on Vs code
-    - 4.2. compiling and testing on remix
+        - 4.1 Edit and creating contracts on Vs code
+        - 4.2. compiling and testing on remix
 5. - That's it
 
 ## At Main branch
@@ -40,7 +40,7 @@ Anyone can send coins to each other without a need for registering with a userna
 But you dont need to if you dont want to start configing the project.
 - Then (Npm i) to install all the dependencies
 - Then I add some folders inside src -> components,contracts,truffle_abis
-   root->migrations->migrations.js
+- root->migrations->migrations.js
 - after this i have to create truffle-config.js file inside root and add some configs
 ### Part 2
 
