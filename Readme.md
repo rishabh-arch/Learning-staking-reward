@@ -79,3 +79,45 @@ $ balance = await tether.balanceOf(accounts[1])
 $ balance.toString()
 $ convertBalance = web3.utils.fromWei(balance)
 ```
+## At Day4 branch
+ I tried testing with `Chai` but failed because i need to paste
+ ```
+{
+    "presets": ["babel-preset-env"]
+} 
+```
+in `.babelrc` in root folder
+then run the command in terminal
+```
+truffle test
+```
+[Youtube Channel Reference](https://www.youtube.com/watch?v=-am44UmQWjI&list=PLzb46hGUzitDd39YzB1YvZqeIXXtmBrHX&index=18)
+
+### Transfer vs TransferFrom `I got this on reddit`
+
+[Let's take a look at the EIP](https://eips.ethereum.org/EIPS/eip-20)
+
+```
+function transfer(address _to, uint256 _value) public returns (bool success)
+transferFrom()
+```
+```
+function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)
+```
+As you can see, the return is the same (bool), but the parameters on the function call are not. `transferFrom()` requires an additional parameter: `address _from`.
+
+This function `transferFrom()` allows a third-party `who has authorization
+isation to spend on your behalf, which is called with approve() function` to send tokens. This opens up some things;
+
+Someone paying for your gas fees to transfer tokens
+
+Someone being able to transfer your tokens `think direct debit`
+
+Contracts, with authorization, can spend your tokens
+
+You've probably encountered this function call `and the terrible UX that comes with it`, then you need to press "Approve"/"Enable" buttons on dapps for token interactions - this is what it is doing.
+
+[explains these two functions](http://www.wealdtech.com/articles/understanding-erc20-token-contracts/) and [talks about using transferFrom](http://www.wealdtech.com/articles/ethereum-smart-service-payment-with-tokens/)
+
+`One More Site` [https://ethereumdev.io/transfers-and-approval-or-erc20-tokens-from-a-solidity-smart-contract/](https://ethereumdev.io/transfers-and-approval-or-erc20-tokens-from-a-solidity-smart-contract/),
+ 
