@@ -17,5 +17,5 @@ const decentralBank = await DecentralBank.deployed();
  await  rwd.transfer(decentralBank.address, 1000000000000000000000000n);
 
   //Distribute 100 Tether to investor
-  await tether.transfer(accounts[1], 1000000000000000000n);
+  await tether.transfer(accounts[1], 100000000000000000000n);
 };

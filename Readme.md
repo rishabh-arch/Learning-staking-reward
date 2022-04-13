@@ -121,3 +121,10 @@ You've probably encountered this function call `and the terrible UX that comes w
 
 `One More Site` [https://ethereumdev.io/transfers-and-approval-or-erc20-tokens-from-a-solidity-smart-contract/](https://ethereumdev.io/transfers-and-approval-or-erc20-tokens-from-a-solidity-smart-contract/),
  
+
+## At Day5 branch
+
+Completing the contracts for staking
+[Youtube Channel Reference](youtube.com/watch?v=Cskg8OTyuiA&list=PLzb46hGUzitDd39YzB1YvZqeIXXtmBrHX&index=22)
+
+`Found Some errors while testing but i am not going to debug at this Day`
