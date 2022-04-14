@@ -128,3 +128,77 @@ Completing the contracts for staking
 [Youtube Channel Reference](youtube.com/watch?v=Cskg8OTyuiA&list=PLzb46hGUzitDd39YzB1YvZqeIXXtmBrHX&index=22)
 
 `Found Some errors while testing but i am not going to debug at this Day`
+
+## At Day6 Branch
+
+### Part 1 - Frontend
+
+ReactJS comes here
+
+### Part 2 - Load Web3 and Blockchain
+
+[Youtube Channel Reference](https://www.youtube.com/watch?v=suxmHQCv3nM&list=PLzb46hGUzitDd39YzB1YvZqeIXXtmBrHX&index=21)
+
+```
+  const [account, setAccount] = useState("");
+  const state = {
+    account: "0x0",
+    tether: {},
+    rwd: {},
+    decentralBank: {},
+    tetherBalance: 0,
+    rwdBalance: 0,
+    stakingBalance: 0,
+    loading: true,
+  };
+
+  useEffect(() => {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      window.ethereum.enable();
+    } else if (window.web3) {
+      window.web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+    } else {
+      window.alert("Please install MetaMask");
+    }
+
+    const web3 = window.web3;
+    web3.eth.getAccounts().then(async (accounts) => {
+      state.account = accounts[0];
+      setAccount(accounts[0]);
+      const networkId = await web3.eth.net.getId();
+      //load Tether contract
+      console.log(networkId);
+      const tetherData = Tether.networks[networkId];
+      if (tetherData) {
+        const tether = new web3.eth.Contract(Tether.abi, tetherData.address);
+        state.tether = tether;
+        // console.log(state.account);
+        const tetherBalance = await tether.methods
+          .balanceOf(state.account)
+          .call();
+
+        state.tetherBalance = tetherBalance;
+        console.log(tetherBalance);
+        //load RWD contract
+      } else {
+        alert("Tether contract not found on this network");
+      }
+
+      // const tetherData = Tether.
+    });
+  }, []);
+```
+
+from Ganache network i got an error that says `Did you ran out of a gas?`, So I replaced it with Matic Network
+
+```
+matic: {
+            provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.g.alchemy.com/v2/RAPXlgGyhJMrfpJTxU55QkOWLc_fdbEg`),
+            network_id: 80001,       //mumbai matic's id
+            gas: 5500000,        // Ropsten has a lower block limit than mainnet
+            confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+            timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+            skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+            },
+```
