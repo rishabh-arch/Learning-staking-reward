@@ -6,6 +6,7 @@ import Web3 from "web3";
 import Tether from "../truffle_abis/Tether.json";
 import RWD from "../truffle_abis/RWD.json";
 import DecentralBank from "../truffle_abis/DecentralBank.json";
+import Main from "./Main";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -84,7 +85,14 @@ function App() {
   return (
     <div>
       <Navbar state={account} />
-      {console.log(loading)}
+      <div className="container-fluid mt-5">
+      <div className="row">
+        <main role="main" className="col-md-12 ml-sm-auto col-lg-12 px-4">
+          <Main state={state} />
+          </main>
+      </div>
+        
+      </div>
     </div>
   );
 }

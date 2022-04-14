@@ -190,15 +190,20 @@ ReactJS comes here
   }, []);
 ```
 
-from Ganache network i got an error that says `Did you ran out of a gas?`, So I replaced it with Matic Network
+from Ganache network i got an error that says `Did you ran out of a gas?`, So I replaced it with `Matic Network`
 
 ```
 matic: {
-            provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.g.alchemy.com/v2/RAPXlgGyhJMrfpJTxU55QkOWLc_fdbEg`),
-            network_id: 80001,       //mumbai matic's id
-            gas: 5500000,        // Ropsten has a lower block limit than mainnet
-            confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-            timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-            skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
-            },
+    provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.g.alchemy.com/v2/RAPXlgGyhJMrfpJTxU55QkOWLc_fdbEg`),
+    network_id: 80001,       //mumbai matic's id
+    gas: 5500000,        // Ropsten has a lower block limit than mainnet
+    confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+    timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+    skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    },
 ```
+
+## At Day7 Branch
+
+[Call vs Send](https://bitsofco.de/calling-smart-contract-functions-using-web3-js-call-vs-send/)
+
