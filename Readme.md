@@ -140,8 +140,10 @@ ReactJS comes here
 [Youtube Channel Reference](https://www.youtube.com/watch?v=suxmHQCv3nM&list=PLzb46hGUzitDd39YzB1YvZqeIXXtmBrHX&index=21)
 
 ```
-  const [account, setAccount] = useState("");
-  const state = {
+const [loading, setLoading] = useState(true);
+  const [loadWallet, setLoadWallet] = useState(false);
+  const [state, setState] = useState({});
+  const state2 ={
     account: "0x0",
     tether: {},
     rwd: {},
@@ -149,13 +151,12 @@ ReactJS comes here
     tetherBalance: 0,
     rwdBalance: 0,
     stakingBalance: 0,
-    loading: true,
-  };
-
+  }
   useEffect(() => {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
       window.ethereum.enable();
+      
     } else if (window.web3) {
       window.web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
     } else {
@@ -164,30 +165,50 @@ ReactJS comes here
 
     const web3 = window.web3;
     web3.eth.getAccounts().then(async (accounts) => {
-      state.account = accounts[0];
-      setAccount(accounts[0]);
+      setState({ ...state, account: accounts[0] });
       const networkId = await web3.eth.net.getId();
+
       //load Tether contract
-      console.log(networkId);
       const tetherData = Tether.networks[networkId];
-      if (tetherData) {
-        const tether = new web3.eth.Contract(Tether.abi, tetherData.address);
-        state.tether = tether;
-        // console.log(state.account);
-        const tetherBalance = await tether.methods
-          .balanceOf(state.account)
-          .call();
+      const rwdData = RWD.networks[networkId];
+      const decentralBankData = DecentralBank.networks[networkId];
 
-        state.tetherBalance = tetherBalance;
-        console.log(tetherBalance);
-        //load RWD contract
+      const tether = new web3.eth.Contract(Tether.abi, tetherData.address);
+      const rwd = new web3.eth.Contract(RWD.abi, rwdData.address);
+      const decentralBank = new web3.eth.Contract(RWD.abi, rwdData.address);
+
+      if (tetherData && rwdData && decentralBankData) {
+        state2.account = accounts[0];
+        await tether.methods
+          .balanceOf(accounts[0])
+          .call()
+          .then(async (res) => state2.tetherBalance = res)  //state2.tetherBalance = res
+          .then(async () => {
+            await rwd.methods
+              .balanceOf(accounts[0])
+              .call()
+              .then(async (res) => state2.rwdBalance = res); //state2.rwdBalance = res
+            await decentralBank.methods
+              .balanceOf(accounts[0])
+              .call()
+              .then(async (res) => state2.stakingBalance = res);  //state2.stakingBalance = res
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            state2.tether = tether;
+            state2.rwd = rwd;
+            state2.decentralBank = decentralBank; //state2.tether = tether, state2.rwd = rwd, state2.decentralBank = decentralBank
+            setState({ ...state, ...state2 });
+            setLoading(false); //state2.loading = false
+          });
       } else {
-        alert("Tether contract not found on this network");
+        alert("contract not found on this network");
       }
-
-      // const tetherData = Tether.
+      //load Reward contract
+      //load DecentralBank contract
     });
   }, []);
+
 ```
 
 from Ganache network i got an error that says `Did you ran out of a gas?`, So I replaced it with `Matic Network`
