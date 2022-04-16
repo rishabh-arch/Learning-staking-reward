@@ -262,3 +262,6 @@ matic: {
 
 [Call vs Send](https://bitsofco.de/calling-smart-contract-functions-using-web3-js-call-vs-send/)
 
+## At Day8 branch
+- Some changes in JS
+- Added some CSS but still work is left, You can rename Tether Token and migrate it with testnet.

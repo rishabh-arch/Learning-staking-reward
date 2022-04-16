@@ -8,6 +8,7 @@ import Tether from "../truffle_abis/Tether.json";
 import RWD from "../truffle_abis/RWD.json";
 import DecentralBank from "../truffle_abis/DecentralBank.json";
 import Main from "./Main";
+import ToWeiConvert from "../utils/ToWeiConvert";
 
 function App() {
   // const [account, setAccount] = useState("");
@@ -22,11 +23,16 @@ function App() {
     tetherBalance: 0,
     rwdBalance: 0,
     stakingBalance: 0,
+    tetherName: "",
+    tetherAddress: "",
+    rwdAddress: "",
   };
   useEffect(() => {
+    let flag=0;
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
       window.ethereum.enable();
+      flag=1;
     } else if (window.web3) {
       window.web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
     } else {
@@ -34,8 +40,7 @@ function App() {
     }
 
     const web3 = window.web3;
-    web3.eth.getAccounts().then(async (accounts) => {
-      console.log(accounts);
+    if(flag===1){web3.eth.getAccounts().then(async (accounts) => {
       const networkId = await web3.eth.net.getId();
 
       //load Tether contract
@@ -43,11 +48,12 @@ function App() {
       console.log(tetherData);
       const rwdData = RWD.networks[networkId];
       const decentralBankData = DecentralBank.networks[networkId];
-
+      state2.tetherAddress = tetherData.address;
+      state2.rwdAddress = rwdData.address;
       const tether = new web3.eth.Contract(Tether.abi, tetherData.address);
 
       const rwd = new web3.eth.Contract(RWD.abi, rwdData.address);
-      
+
       const decentralBank = new web3.eth.Contract(
         DecentralBank.abi,
         decentralBankData.address
@@ -58,7 +64,13 @@ function App() {
         await tether.methods
           .balanceOf(accounts[0])
           .call()
-          .then(async (res) => (state2.tetherBalance = res)) //state2.tetherBalance = res
+          .then(async (res) => (state2.tetherBalance = res))
+          .then(async () => {
+            await tether.methods
+              .symbol()
+              .call()
+              .then((res) => (state2.tetherName = res));
+          }) //state2.tetherBalance = res
           .then(async () => {
             await rwd.methods
               .balanceOf(accounts[0])
@@ -82,7 +94,7 @@ function App() {
       }
       //load Reward contract
       //load DecentralBank contract
-    });
+    });}
   }, []);
   // two function one that stakes and one that unstakes -
   // leverage our decentralBank contract - deposit tokens and unstaking
@@ -94,11 +106,11 @@ function App() {
   const stakeToken = async (amount) => {
     setLoading(true);
     state.tether.methods
-      .approve(state.decentralBank._address, amount)
+      .approve(state.decentralBank._address, ToWeiConvert(amount))
       .send({ from: state.account })
       .on("transactionHash", (hash) => {
         state.decentralBank.methods
-          .depositTokens(amount)
+          .depositTokens(ToWeiConvert(amount))
           .send({ from: state.account })
           .on("transactionHash", (hash) => {
             setLoading(false);
@@ -117,7 +129,9 @@ function App() {
   return (
     <>
       {loading ? (
+        <div className="LoadingClass">
         <CubeSpinner size={30} color="#686769" loading={state.loading} />
+        </div>
       ) : (
         <div>
           <Navbar state={state} />
@@ -128,6 +142,8 @@ function App() {
                   state={state}
                   unstakeToken={unstakeToken}
                   stakeToken={stakeToken}
+                  StakingTokenAddress ={state.tetherAddress}
+                  rewardTokenAddress ={state.rwdAddress}
                 />
               </main>
             </div>

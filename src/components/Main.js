@@ -1,11 +1,27 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import Airdrop from "./Airdrop";
 
-function Main({state,stakeToken,unstakeToken}) {
+function Main({state,rewardTokenAddress,stakeToken,unstakeToken,StakingTokenAddress}) {
+
+  // const TetherName = ()=>  ;
+
   const [stake, setStake] = useState(0);
+  // const [tetherName, setTetherName] = useState("");
+  // useEffect(() => {
+  //   setTetherName(async()=>await state.tether.methods.symbol().call().then(res=>res));
+  // }, [state.tether]);
+
   return (
     <div id="content" className="mt-3">
       {/* create a table and body */}
+      <div class="card" style={{backgroundColor:"cadetblue",borderColor:"darkblue"}}>
+        
+        <div class="card-body">
+          <h2>Import these addresses in your wallet first</h2>
+          <h4 class="card-title">{state.tetherName} - {StakingTokenAddress}</h4>
+          <h4 class="card-title">RWD - {rewardTokenAddress}</h4>
+        </div>
+      </div>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -15,7 +31,7 @@ function Main({state,stakeToken,unstakeToken}) {
         </thead>
         <tbody>
           <tr>
-            <td>{window.web3.utils.fromWei(`${state.stakingBalance}`,"Ether")} USDT</td>
+            <td>{window.web3.utils.fromWei(`${state.stakingBalance}`,"Ether")} {state.tetherName}</td>
             <td>{window.web3.utils.fromWei(state.rwdBalance,"Ether")} RWD</td>
           </tr>
         </tbody>
@@ -25,7 +41,7 @@ function Main({state,stakeToken,unstakeToken}) {
       <div className="row">
         <div className="col-md-6">
           <div className="form-group">
-            <label htmlFor="stake">Stake (Balance - {window.web3.utils.fromWei(`${state.tetherBalance}`,"Ether")} USDT)</label>
+            <label htmlFor="stake">Stake (Balance - {window.web3.utils.fromWei(`${state.tetherBalance}`,"Ether")} {state.tetherName})</label>
             
             <input
               type="number" 
@@ -41,7 +57,7 @@ function Main({state,stakeToken,unstakeToken}) {
         <button type="button" onClick={()=>unstakeToken()} className="btn btn-primary m-2">Withdraw</button>
       </div>
 
-    <Airdrop/>
+    {/* <Airdrop/> */}
 
       {/* <div className="card">
         <div className="card-body">

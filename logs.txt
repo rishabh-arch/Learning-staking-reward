@@ -1,25 +1,39 @@
+
+
+
+Starting migrations...
+======================
+> Network name:    'matic'
+> Network id:      80001
+> Block gas limit: 20000000 (0x1312d00)
+
+
 1_initial_migration.js
 ======================
 
    Replacing 'Migrations'
    ----------------------
-   > transaction hash:    0x2f821408fa84cef47943267e79db1e2ded175f74346f0d14d3d5a416c0107690
-   > Blocks: 0            Seconds: 0
-   > contract address:    0x0ba5FD2B7295Ad5E71EbB6Bfe1E750029FE1f47e
-   > block number:        1
-   > block timestamp:     1649928626
-   > account:             0xa4017e559CdCB3012862cF21670fD317BEe7d5bb
-   > balance:             99.99335562
-   > gas used:            332219 (0x511bb)
-   > gas price:           20 gwei
+   > transaction hash:    0x8cea8369b9f8f13df5a0e9861de97c67e03538f1cb353e5f428fca4ec7e92e10
+   > Blocks: 1            Seconds: 4
+   > contract address:    0x0f4a0520401830495c305a494F59a61338a24Df4
+   > block number:        25955253
+   > block timestamp:     1650091757
+   > account:             0x54c860C59DdF1960FE526201A90E0fD62f4a5eB5
+   > balance:             0.089309464920298049
+   > gas used:            333519 (0x516cf)
+   > gas price:           2.50000001 gwei
    > value sent:          0 ETH
-   > total cost:          0.00664438 ETH
+   > total cost:          0.00083379750333519 ETH
 
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 1 (block: 25955254)
+   > confirmation number: 2 (block: 25955255)
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.00664438 ETH
+   > Total cost:     0.00083379750333519 ETH
 
 
 2_deploy_contract.js
@@ -27,56 +41,68 @@
 
    Replacing 'Tether'
    ------------------
-   > transaction hash:    0xca5471d0975c2601a83c93faaf5960bae34c398ac970f9fdd7370e4dfbb9ac4c
-   > Blocks: 0            Seconds: 0
-   > contract address:    0x1D941383de7c2ebC49B2203Feeb4F9684bda19C2
-   > block number:        3
-   > block timestamp:     1649928628
-   > account:             0xa4017e559CdCB3012862cF21670fD317BEe7d5bb
-   > balance:             99.975018
-   > gas used:            874346 (0xd576a)
-   > gas price:           20 gwei
+   > transaction hash:    0xbc51c97ac0788b760be4931f4d248649dbbf71ebc92c5e70e920cb95b7b2035e
+   > Blocks: 2            Seconds: 8
+   > contract address:    0x6782558626288DfAaDa2e69a5e4aE4253EB70CC0
+   > block number:        25955259
+   > block timestamp:     1650091787
+   > account:             0x54c860C59DdF1960FE526201A90E0fD62f4a5eB5
+   > balance:             0.086988322411013479
+   > gas used:            882522 (0xd775a)
+   > gas price:           2.50000001 gwei
    > value sent:          0 ETH
-   > total cost:          0.01748692 ETH
+   > total cost:          0.00220630500882522 ETH
 
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 1 (block: 25955260)
+   > confirmation number: 2 (block: 25955261)
 
    Replacing 'RWD'
    ---------------
-   > transaction hash:    0x6cf277dc31211b519e4db3b986c8c730e90d82944ced4fba93e8e78f10e72799
-   > Blocks: 0            Seconds: 0
-   > contract address:    0xd0a3A000a3fe68448b855e547eAa4182073711b8
-   > block number:        4
-   > block timestamp:     1649928629
-   > account:             0xa4017e559CdCB3012862cF21670fD317BEe7d5bb
-   > balance:             99.9575306
-   > gas used:            874370 (0xd5782)
-   > gas price:           20 gwei
+   > transaction hash:    0x54884b35d8a293964054c9e24f35a7c5069c1656392c3e3884a4cea5d9936bfb
+   > Blocks: 2            Seconds: 8
+   > contract address:    0x9E2Fd844E6bC9BC8afF79C9D498fF9D0153f2f9D
+   > block number:        25955263
+   > block timestamp:     1650091807
+   > account:             0x54c860C59DdF1960FE526201A90E0fD62f4a5eB5
+   > balance:             0.084781897402187779
+   > gas used:            882570 (0xd778a)
+   > gas price:           2.50000001 gwei
    > value sent:          0 ETH
-   > total cost:          0.0174874 ETH
+   > total cost:          0.0022064250088257 ETH
 
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 1 (block: 25955264)
+   > confirmation number: 2 (block: 25955265)
 
    Replacing 'DecentralBank'
    -------------------------
-   > transaction hash:    0x072e621f9cfb3774905762871224926618e2aba01b01ac22318d6d830aa294cd
-   > Blocks: 0            Seconds: 0
-   > contract address:    0xDaFA69e7045812fa486A6012298b546AE87477e3
-   > block number:        5
-   > block timestamp:     1649928630
-   > account:             0xa4017e559CdCB3012862cF21670fD317BEe7d5bb
-   > balance:             99.9323949
-   > gas used:            1256785 (0x132d51)
-   > gas price:           20 gwei
+   > transaction hash:    0x9a8885be52ef3ac661a23a38f46375f26467a6239e504005c39d39906ffbb433
+   > Blocks: 2            Seconds: 8
+   > contract address:    0x73c02B13e4d480f8e6aD80ac56A41D6b8fEB08A0
+   > block number:        25955267
+   > block timestamp:     1650091828
+   > account:             0x54c860C59DdF1960FE526201A90E0fD62f4a5eB5
+   > balance:             0.081626904889567809
+   > gas used:            1261997 (0x1341ad)
+   > gas price:           2.50000001 gwei
    > value sent:          0 ETH
-   > total cost:          0.0251357 ETH
+   > total cost:          0.00315499251261997 ETH
 
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 1 (block: 25955268)
+   > confirmation number: 2 (block: 25955269)
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.06011002 ETH
+   > Total cost:     0.00756772253027089 ETH
 
 
 Summary
 =======
 > Total deployments:   4
-> Final cost:          0.0667544 ETH
+> Final cost:          0.00840152003360608 ETH
