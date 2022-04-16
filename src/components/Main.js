@@ -1,6 +1,8 @@
 import React,{useState} from "react";
+import Airdrop from "./Airdrop";
 
-function Main({state}) {
+function Main({state,stakeToken,unstakeToken}) {
+  const [stake, setStake] = useState(0);
   return (
     <div id="content" className="mt-3">
       {/* create a table and body */}
@@ -13,7 +15,7 @@ function Main({state}) {
         </thead>
         <tbody>
           <tr>
-            <td>{window.web3.utils.fromWei(state.stakingBalance,"Ether")} USDT</td>
+            <td>{window.web3.utils.fromWei(`${state.stakingBalance}`,"Ether")} USDT</td>
             <td>{window.web3.utils.fromWei(state.rwdBalance,"Ether")} RWD</td>
           </tr>
         </tbody>
@@ -23,35 +25,23 @@ function Main({state}) {
       <div className="row">
         <div className="col-md-6">
           <div className="form-group">
-            <label htmlFor="stake">Stake</label>
+            <label htmlFor="stake">Stake (Balance - {window.web3.utils.fromWei(`${state.tetherBalance}`,"Ether")} USDT)</label>
+            
             <input
-              type="number"
+              type="number" 
+              onChange={(e) =>{ setStake(e.target.value);console.log(e.target.value)}}
               className="form-control"
               id="stake"
               placeholder="0"
             />
           </div>
         </div>
-        <div className="col-md-6">
-          <div className="form-group">
-            <label htmlFor="balance">Balance : {window.web3.utils.fromWei(state.tetherBalance,"Ether")}</label>
-            <input
-              type="number"
-              className="form-control"
-              id="balance"
-              placeholder="0"
-            />
-          </div>
-        </div>
-        <button type="button" className="btn btn-primary m-2">Deposit</button>
-        <button type="button" className="btn btn-primary m-2">Withdraw</button>
+   
+        <button type="button" onClick={()=>{stakeToken(stake);}} className="btn btn-primary m-2">Deposit</button>
+        <button type="button" onClick={()=>unstakeToken()} className="btn btn-primary m-2">Withdraw</button>
       </div>
 
-    <div className="card text-center">
-      <div className="card-body">
-        <h4 className="card-title">AIRDROP - </h4>
-      </div>
-    </div>
+    <Airdrop/>
 
       {/* <div className="card">
         <div className="card-body">

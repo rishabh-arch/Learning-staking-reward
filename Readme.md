@@ -81,7 +81,7 @@ $ convertBalance = web3.utils.fromWei(balance)
 ```
 ## At Day4 branch
  I tried testing with `Chai` but failed because i need to paste
- ```
+ ```javascript
 {
     "presets": ["babel-preset-env"]
 } 
@@ -97,11 +97,11 @@ truffle test
 
 [Let's take a look at the EIP](https://eips.ethereum.org/EIPS/eip-20)
 
-```
+```javascript
 function transfer(address _to, uint256 _value) public returns (bool success)
 transferFrom()
 ```
-```
+```javascript
 function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)
 ```
 As you can see, the return is the same (bool), but the parameters on the function call are not. `transferFrom()` requires an additional parameter: `address _from`.
@@ -139,11 +139,11 @@ ReactJS comes here
 
 [Youtube Channel Reference](https://www.youtube.com/watch?v=suxmHQCv3nM&list=PLzb46hGUzitDd39YzB1YvZqeIXXtmBrHX&index=21)
 
-```
+```javascript
 const [loading, setLoading] = useState(true);
   const [loadWallet, setLoadWallet] = useState(false);
   const [state, setState] = useState({});
-  const state2 ={
+  const state2 = {
     account: "0x0",
     tether: {},
     rwd: {},
@@ -151,12 +151,11 @@ const [loading, setLoading] = useState(true);
     tetherBalance: 0,
     rwdBalance: 0,
     stakingBalance: 0,
-  }
+  };
   useEffect(() => {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
       window.ethereum.enable();
-      
     } else if (window.web3) {
       window.web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
     } else {
@@ -165,33 +164,39 @@ const [loading, setLoading] = useState(true);
 
     const web3 = window.web3;
     web3.eth.getAccounts().then(async (accounts) => {
-      setState({ ...state, account: accounts[0] });
+      console.log(accounts);
       const networkId = await web3.eth.net.getId();
 
       //load Tether contract
       const tetherData = Tether.networks[networkId];
+      console.log(tetherData);
       const rwdData = RWD.networks[networkId];
       const decentralBankData = DecentralBank.networks[networkId];
 
       const tether = new web3.eth.Contract(Tether.abi, tetherData.address);
+
       const rwd = new web3.eth.Contract(RWD.abi, rwdData.address);
-      const decentralBank = new web3.eth.Contract(RWD.abi, rwdData.address);
+      
+      const decentralBank = new web3.eth.Contract(
+        DecentralBank.abi,
+        decentralBankData.address
+      );
 
       if (tetherData && rwdData && decentralBankData) {
         state2.account = accounts[0];
         await tether.methods
           .balanceOf(accounts[0])
           .call()
-          .then(async (res) => state2.tetherBalance = res)  //state2.tetherBalance = res
+          .then(async (res) => (state2.tetherBalance = res)) //state2.tetherBalance = res
           .then(async () => {
             await rwd.methods
               .balanceOf(accounts[0])
               .call()
-              .then(async (res) => state2.rwdBalance = res); //state2.rwdBalance = res
+              .then(async (res) => (state2.rwdBalance = res)); //state2.rwdBalance = res
             await decentralBank.methods
-              .balanceOf(accounts[0])
+              .StakingBalances(accounts[0])
               .call()
-              .then(async (res) => state2.stakingBalance = res);  //state2.stakingBalance = res
+              .then(async (res) => (state2.stakingBalance = res)); //state2.stakingBalance = res
           })
           .catch((err) => console.log(err))
           .finally(() => {
@@ -208,12 +213,41 @@ const [loading, setLoading] = useState(true);
       //load DecentralBank contract
     });
   }, []);
+  // two function one that stakes and one that unstakes -
+  // leverage our decentralBank contract - deposit tokens and unstaking
+  // ALL Of This is for the staking:
+  // depositTokens transferFrom
+  // function approve transaction hash
+  // STAKING FUNCTION ?? >> decentralBank.depositTokens (send transactionHash =>)
 
+  const stakeToken = async (amount) => {
+    setLoading(true);
+    state.tether.methods
+      .approve(state.decentralBank._address, amount)
+      .send({ from: state.account })
+      .on("transactionHash", (hash) => {
+        state.decentralBank.methods
+          .depositTokens(amount)
+          .send({ from: state.account })
+          .on("transactionHash", (hash) => {
+            setLoading(false);
+          });
+      });
+  };
+  const unstakeToken = async () => {
+    setLoading(true);
+    state.decentralBank.methods
+      .unstakeTokens()
+      .send({ from: state.account })
+      .on("transactionHash", (hash) => {
+        setLoading(false);
+      });
+  };
 ```
 
 from Ganache network i got an error that says `Did you ran out of a gas?`, So I replaced it with `Matic Network`
 
-```
+```javascript
 matic: {
     provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.g.alchemy.com/v2/RAPXlgGyhJMrfpJTxU55QkOWLc_fdbEg`),
     network_id: 80001,       //mumbai matic's id
