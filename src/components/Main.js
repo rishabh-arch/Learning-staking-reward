@@ -31,7 +31,7 @@ function Main({state,rewardTokenAddress,stakeToken,unstakeToken,StakingTokenAddr
         </thead>
         <tbody>
           <tr>
-            <td>{window.web3.utils.fromWei(`${state.stakingBalance}`,"Ether")} {state.tetherName}</td>
+            <td>{window.web3.utils.fromWei(state.stakingBalance,"Ether")} {state.tetherName}</td>
             <td>{window.web3.utils.fromWei(state.rwdBalance,"Ether")} RWD</td>
           </tr>
         </tbody>
