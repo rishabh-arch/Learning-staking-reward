@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Learning-staking-reward/precache-manifest.07a15b06257e4ebe42e2ebf1d7170fb2.js"
+  "/Learning-staking-reward/precache-manifest.30f0b7e13f3675046b83ed1c9da312fa.js"
 );
 
 workbox.clientsClaim();
